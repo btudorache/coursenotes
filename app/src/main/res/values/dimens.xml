@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="course_item_width">124dp</dimen>
+    <dimen name="create_fragment_textview_width">180dp</dimen>
+    <dimen name="create_fragment_textview_height">50dp</dimen>
+    <dimen name="detail_width">400dp</dimen>
+    <dimen name="week_notes_padding">15dp</dimen>
+</resources>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/courseListFragment">
+
+    <fragment
+        android:id="@+id/courseListFragment"
+        android:name="com.example.coursenotes.courselist.CourseListFragment"
+        android:label="Course Notes"
+        tools:layout="@layout/fragment_course_list">
+        <action
+            android:id="@+id/action_courseListFragment_to_createCourseFragment"
+            app:destination="@id/createCourseFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_courseListFragment_to_courseDetailFragment"
+            app:destination="@id/courseDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createCourseFragment"
+        android:name="com.example.coursenotes.createcourse.CreateCourseFragment"
+        android:label="Create Course"
+        tools:layout="@layout/fragment_create_course">
+        <action
+            android:id="@+id/action_createCourseFragment_to_courseListFragment"
+            app:destination="@id/courseListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/courseDetailFragment"
+        android:name="com.example.coursenotes.coursedetail.CourseDetailFragment"
+        android:label="Course Overview"
+        tools:layout="@layout/fragment_course_detail">
+        <argument
+            android:name="courseId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_courseDetailFragment_to_weekDetailFragment"
+            app:destination="@id/weekDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weekDetailFragment"
+        android:name="com.example.coursenotes.weekdetail.WeekDetailFragment"
+        android:label="Week Notes"
+        tools:layout="@layout/fragment_week_detail" >
+        <argument
+            android:name="weekId"
+            app:argType="long" />
+    </fragment>
+</navigation>

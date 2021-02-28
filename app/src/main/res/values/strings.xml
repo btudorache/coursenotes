@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">CourseNotes</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="error_message">Please enter the course name and duration</string>
+
+    <string name="plus_icon">plus icon</string>
+    <string name="create_course">Create Course</string>
+    <string name="enter_name_hint">Enter name</string>
+    <string name="enter_duration_hint">Enter duration</string>
+    <string name="clear_courses">Clear all courses</string>
+</resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.coursenotes.weekdetail.WeekDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <EditText
+            android:id="@+id/edit_week_title"
+            android:layout_width="0dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="44dp"
+            android:background="@android:color/transparent"
+            android:paddingStart="@dimen/week_notes_padding"
+            android:paddingEnd="@dimen/week_notes_padding"
+            android:text="@{viewmodel.week.name}"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Title" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="24dp"
+            android:fillViewport="true"
+            android:paddingStart="@dimen/week_notes_padding"
+            android:paddingEnd="@dimen/week_notes_padding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_week_title"
+            app:layout_constraintVertical_bias="0.276">
+
+            <EditText
+                android:id="@+id/edit_week_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="text"
+                android:inputType="textMultiLine"
+                android:overScrollMode="always"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical"
+                android:singleLine="false"
+                android:text="@{viewmodel.week.text}"
+                android:textSize="18sp" />
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

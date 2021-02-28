@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="course"
+            type="com.example.coursenotes.database.Course" />
+
+        <variable
+            name="listener"
+            type="com.example.coursenotes.courselist.CourseListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> listener.onClick(course)}">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/course_item_width"
+            android:layout_height="110dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="TODO"
+            app:courseImage="@{course}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="@dimen/course_item_width"
+            android:layout_height="34dp"
+            android:text="@{course.courseName}"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            tools:text="salut" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
