@@ -20,4 +20,5 @@
     <string name="delete_course_dialog_positive_text">Delete</string>
     <string name="delete_course_dialog_negative_text">Cancel</string>
     <string name="create_course_button_string">Create Course</string>
+    <string name="new_week_message">New course week created</string>
 </resources>

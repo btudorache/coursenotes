@@ -11,7 +11,7 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/create_course"
+        android:id="@+id/create_week"
         android:orderInCategory="100"
         android:title="@string/create_course_button_string"
         android:icon="@drawable/ic_baseline_create_48"

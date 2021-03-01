@@ -44,11 +44,9 @@ class CreateCourseFragment : Fragment() {
 
         viewModel.showCreationWarning.observe(viewLifecycleOwner, Observer {
             if (it == true) {
-                Snackbar.make(
-                    requireActivity().findViewById(android.R.id.content),
-                    getString(R.string.error_message),
-                    Snackbar.LENGTH_SHORT // How long to display the message.
-                ).show()
+                Snackbar.make(requireActivity().findViewById(android.R.id.content),
+                              getString(R.string.error_message),
+                              Snackbar.LENGTH_SHORT).show()
                 viewModel.doneShowingWarning()
             }
         })

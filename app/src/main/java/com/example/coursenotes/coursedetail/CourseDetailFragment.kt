@@ -9,10 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coursenotes.R
-import com.example.coursenotes.createcourse.CreateCourseViewModel
-import com.example.coursenotes.createcourse.CreateCourseViewModelFactory
 import com.example.coursenotes.database.AppDatabase
 import com.example.coursenotes.databinding.FragmentCourseDetailBinding
+import com.google.android.material.snackbar.Snackbar
 
 class CourseDetailFragment : Fragment() {
     private lateinit var viewModel: CourseDetailViewModel
@@ -59,6 +58,15 @@ class CourseDetailFragment : Fragment() {
             }
         })
 
+        viewModel.showWeekCreatedSnackbar.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                Snackbar.make(requireActivity().findViewById(android.R.id.content),
+                              getString(R.string.new_week_message),
+                              Snackbar.LENGTH_SHORT).show()
+                viewModel.doneShowingWeekCreatedSnackbar()
+            }
+        })
+
         val manager = LinearLayoutManager(activity)
         binding.weekList.layoutManager = manager
 
@@ -73,11 +81,11 @@ class CourseDetailFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.delete_course -> {
-                DeleteCourseDialogFragment.getInstance(viewModel).show(parentFragmentManager, "delete_dialog")
+                DeleteCourseDialogFragment(viewModel).show(parentFragmentManager, "delete_dialog")
                 true
             }
-            R.id.create_course -> {
-                viewModel.createCourse()
+            R.id.create_week -> {
+                viewModel.createWeek()
                 true
             }
             else -> super.onOptionsItemSelected(item)

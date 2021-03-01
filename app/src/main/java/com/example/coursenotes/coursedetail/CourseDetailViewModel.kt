@@ -43,7 +43,7 @@ class CourseDetailViewModel(val courseId: Long,
         }
     }
 
-    fun createCourse() {
+    fun createWeek() {
         viewModelScope.launch {
             courseAndWeeks.value?.let {
                 val course = it.course.copy(duration = it.course.duration + 1)
@@ -51,7 +51,17 @@ class CourseDetailViewModel(val courseId: Long,
 
                 courseDatabase.update(course)
                 weekDatabase.insert(week)
+
+                _showWeekCreatedSnackbar.value = true
             }
         }
+    }
+
+    private val _showWeekCreatedSnackbar = MutableLiveData<Boolean>()
+    val showWeekCreatedSnackbar: LiveData<Boolean>
+        get() = _showWeekCreatedSnackbar
+
+    fun doneShowingWeekCreatedSnackbar() {
+        _showWeekCreatedSnackbar.value = false
     }
 }

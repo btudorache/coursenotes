@@ -6,18 +6,7 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.example.coursenotes.R
 
-class DeleteCourseDialogFragment private constructor (private val viewModel: CourseDetailViewModel): DialogFragment() {
-    companion object {
-        private var INSTANCE: DeleteCourseDialogFragment? = null
-
-        fun getInstance(viewModel: CourseDetailViewModel): DeleteCourseDialogFragment {
-            if (INSTANCE == null) {
-                INSTANCE = DeleteCourseDialogFragment(viewModel)
-            }
-            return INSTANCE as DeleteCourseDialogFragment
-        }
-    }
-
+class DeleteCourseDialogFragment(private val viewModel: CourseDetailViewModel): DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
