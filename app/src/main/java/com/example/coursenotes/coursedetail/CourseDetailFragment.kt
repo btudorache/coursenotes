@@ -1,10 +1,8 @@
 package com.example.coursenotes.coursedetail
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,16 +18,18 @@ class CourseDetailFragment : Fragment() {
     private lateinit var viewModel: CourseDetailViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        setHasOptionsMenu(true)
+
         val binding: FragmentCourseDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_course_detail, container, false)
 
         val application = requireNotNull(this.activity).application
         val arguments = CourseDetailFragmentArgs.fromBundle(requireArguments())
 
-        val database = AppDatabase.getInstance(application).courseDao
+        val database = AppDatabase.getInstance(application)
 
-        val viewModelFactory = CourseDetailViewModelFactory(arguments.courseId, database)
+        val viewModelFactory = CourseDetailViewModelFactory(arguments.courseId, database.courseDao, database.weekDao)
 
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(CourseDetailViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(CourseDetailViewModel::class.java)
 
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
@@ -52,9 +52,36 @@ class CourseDetailFragment : Fragment() {
             }
         })
 
+        viewModel.navigateToCourseList.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                findNavController().navigate(CourseDetailFragmentDirections.actionCourseDetailFragmentToCourseListFragment())
+                viewModel.doneNavigatingToCourseList()
+            }
+        })
+
         val manager = LinearLayoutManager(activity)
         binding.weekList.layoutManager = manager
 
         return binding.root
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_course_detail, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.delete_course -> {
+                viewModel.deleteCourse()
+                true
+            }
+            R.id.create_course -> {
+                viewModel.createCourse()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 }

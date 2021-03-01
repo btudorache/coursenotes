@@ -5,10 +5,12 @@ import com.example.coursenotes.database.*
 import kotlinx.coroutines.launch
 
 class CourseDetailViewModel(val courseId: Long,
-                            dataSource: CourseDao) : ViewModel() {
-    val database = dataSource
+                            courseDataSource: CourseDao,
+                            weekDataSource: WeekDao) : ViewModel() {
+    private val courseDatabase = courseDataSource
+    private val weekDatabase = weekDataSource
 
-    val courseAndWeeks = database.getCourseAndWeeksWithId(courseId)
+    val courseAndWeeks = courseDatabase.getCourseAndWeeksWithId(courseId)
 
     private val _navigateToWeekDetail = MutableLiveData<Long?>()
     val navigateToWeekDetail: LiveData<Long?>
@@ -20,5 +22,36 @@ class CourseDetailViewModel(val courseId: Long,
 
     fun doneNavigatingToWeekDetail() {
         _navigateToWeekDetail.value = null
+    }
+
+    private val _navigateToCourseList = MutableLiveData<Boolean>()
+    val navigateToCourseList: LiveData<Boolean>
+        get() = _navigateToCourseList
+
+
+    fun doneNavigatingToCourseList() {
+        _navigateToCourseList.value = false
+    }
+
+    fun deleteCourse() {
+        viewModelScope.launch {
+            courseAndWeeks.value?.let {
+                courseDatabase.delete(it.course)
+            }
+
+            _navigateToCourseList.value = true
+        }
+    }
+
+    fun createCourse() {
+        viewModelScope.launch {
+            courseAndWeeks.value?.let {
+                val course = it.course.copy(duration = it.course.duration + 1)
+                val week = Week(courseCreatorId = it.course.courseId, name = "Week " + course.duration)
+
+                courseDatabase.update(course)
+                weekDatabase.insert(week)
+            }
+        }
     }
 }

@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_courseDetailFragment_to_weekDetailFragment"
             app:destination="@id/weekDetailFragment" />
+        <action
+            android:id="@+id/action_courseDetailFragment_to_courseListFragment"
+            app:destination="@id/courseListFragment" />
     </fragment>
     <fragment
         android:id="@+id/weekDetailFragment"

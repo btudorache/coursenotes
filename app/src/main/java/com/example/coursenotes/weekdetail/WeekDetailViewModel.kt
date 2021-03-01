@@ -18,10 +18,8 @@ class WeekDetailViewModel(val weekId: Long,
     fun updateWeekData(editTextData: String, editTextTitle: String) {
         if (editTextData != week.value?.text || editTextTitle != week.value?.name) {
             viewModelScope.launch {
-                val newWeek = week.value?.copy()
-                if (newWeek != null) {
-                    newWeek.text = editTextData
-                    newWeek.name = editTextTitle
+                week.value?.let {
+                    val newWeek = it.copy(text = editTextData, name = editTextTitle)
                     database.update(newWeek)
                 }
             }

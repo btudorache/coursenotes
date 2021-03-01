@@ -5,6 +5,8 @@ import androidx.room.*
 
 @Dao
 interface WeekDao {
+    @Insert
+    suspend fun insert(week: Week)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(weekList: List<Week>)

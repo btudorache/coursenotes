@@ -8,12 +8,13 @@ import com.example.coursenotes.database.WeekDao
 
 
 class CourseDetailViewModelFactory(private val courseId: Long,
-                                   private val dataSource: CourseDao): ViewModelProvider.Factory {
+                                   private val courseDataSource: CourseDao,
+                                   private val weekDataSource: WeekDao): ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(CourseDetailViewModel::class.java)) {
-            return CourseDetailViewModel(courseId, dataSource) as T
+            return CourseDetailViewModel(courseId, courseDataSource, weekDataSource) as T
         }
         throw IllegalArgumentException("Unknown ViewModel Class")
     }

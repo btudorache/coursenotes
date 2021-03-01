@@ -1,6 +1,7 @@
 package com.example.coursenotes.courselist
 
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.coursenotes.R
 import com.example.coursenotes.database.Course
