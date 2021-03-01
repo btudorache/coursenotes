@@ -15,5 +15,9 @@
     <string name="enter_duration_hint">Enter duration</string>
     <string name="clear_courses">Clear all courses</string>
     <string name="delete_course_button_string">Delete Course</string>
+
+    <string name="delete_course_dialog_text">Delete course?</string>
+    <string name="delete_course_dialog_positive_text">Delete</string>
+    <string name="delete_course_dialog_negative_text">Cancel</string>
     <string name="create_course_button_string">Create Course</string>
 </resources>
