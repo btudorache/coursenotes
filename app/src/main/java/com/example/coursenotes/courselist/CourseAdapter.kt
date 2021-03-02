@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.coursenotes.database.Course
 import com.example.coursenotes.databinding.ListItemCourseBinding
 
-class CourseAdapter(val listener: CourseListener): ListAdapter<Course, CourseAdapter.ViewHolder>(CourseDiffCallback()) {
+class CourseAdapter(val listener: CourseListener) : ListAdapter<Course, CourseAdapter.ViewHolder>(CourseDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -36,7 +36,7 @@ class CourseAdapter(val listener: CourseListener): ListAdapter<Course, CourseAda
     }
 }
 
-class CourseDiffCallback: DiffUtil.ItemCallback<Course>() {
+class CourseDiffCallback : DiffUtil.ItemCallback<Course>() {
     override fun areItemsTheSame(oldItem: Course, newItem: Course): Boolean {
         return oldItem.courseId == newItem.courseId
     }
@@ -44,7 +44,6 @@ class CourseDiffCallback: DiffUtil.ItemCallback<Course>() {
     override fun areContentsTheSame(oldItem: Course, newItem: Course): Boolean {
         return oldItem == newItem
     }
-
 }
 
 class CourseListener(val clickListener: (courseId: Long) -> Unit) {

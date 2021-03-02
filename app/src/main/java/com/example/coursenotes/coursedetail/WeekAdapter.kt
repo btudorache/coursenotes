@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.coursenotes.database.Week
 import com.example.coursenotes.databinding.ListItemWeekBinding
 
-class WeekAdapter(val listener: WeekListener): ListAdapter<Week, WeekAdapter.ViewHolder>(WeekDiffCallback()) {
-
+class WeekAdapter(val listener: WeekListener) : ListAdapter<Week, WeekAdapter.ViewHolder>(WeekDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
@@ -36,7 +35,7 @@ class WeekAdapter(val listener: WeekListener): ListAdapter<Week, WeekAdapter.Vie
     }
 }
 
-class WeekDiffCallback: DiffUtil.ItemCallback<Week>() {
+class WeekDiffCallback : DiffUtil.ItemCallback<Week>() {
     override fun areItemsTheSame(oldItem: Week, newItem: Week): Boolean {
         return oldItem.weekId == newItem.weekId
     }
@@ -44,7 +43,6 @@ class WeekDiffCallback: DiffUtil.ItemCallback<Week>() {
     override fun areContentsTheSame(oldItem: Week, newItem: Week): Boolean {
         return oldItem == newItem
     }
-
 }
 
 class WeekListener(val clickListener: (weekId: Long) -> Unit) {

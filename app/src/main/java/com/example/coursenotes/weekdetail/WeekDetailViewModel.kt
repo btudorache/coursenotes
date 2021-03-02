@@ -5,13 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.coursenotes.database.CourseDao
-import com.example.coursenotes.database.Week
 import com.example.coursenotes.database.WeekDao
 import kotlinx.coroutines.launch
 
-class WeekDetailViewModel(val weekId: Long,
-                          courseDataSource: CourseDao,
-                          weekDataSource: WeekDao) : ViewModel() {
+class WeekDetailViewModel(
+    val weekId: Long,
+    courseDataSource: CourseDao,
+    weekDataSource: WeekDao
+) : ViewModel() {
 
     private val courseDatabase = courseDataSource
     private val weekDatabase = weekDataSource

@@ -4,9 +4,12 @@ import androidx.lifecycle.*
 import com.example.coursenotes.database.*
 import kotlinx.coroutines.launch
 
-class CourseDetailViewModel(val courseId: Long,
-                            courseDataSource: CourseDao,
-                            weekDataSource: WeekDao) : ViewModel() {
+class CourseDetailViewModel(
+    val courseId: Long,
+    courseDataSource: CourseDao,
+    weekDataSource: WeekDao
+) : ViewModel() {
+
     private val courseDatabase = courseDataSource
     private val weekDatabase = weekDataSource
 
@@ -27,7 +30,6 @@ class CourseDetailViewModel(val courseId: Long,
     private val _navigateToCourseList = MutableLiveData<Boolean>()
     val navigateToCourseList: LiveData<Boolean>
         get() = _navigateToCourseList
-
 
     fun doneNavigatingToCourseList() {
         _navigateToCourseList.value = false

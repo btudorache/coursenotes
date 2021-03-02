@@ -3,11 +3,9 @@ package com.example.coursenotes.courselist
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.coursenotes.database.CourseDao
-import kotlinx.coroutines.launch
 
-class CourseListViewModel(dataSource: CourseDao): ViewModel() {
+class CourseListViewModel(dataSource: CourseDao) : ViewModel() {
     val database = dataSource
 
     val courses = database.getAllCourses()

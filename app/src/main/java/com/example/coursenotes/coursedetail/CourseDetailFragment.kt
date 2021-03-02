@@ -1,10 +1,14 @@
 package com.example.coursenotes.coursedetail
 
 import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +20,11 @@ import com.google.android.material.snackbar.Snackbar
 class CourseDetailFragment : Fragment() {
     private lateinit var viewModel: CourseDetailViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         setHasOptionsMenu(true)
 
         val binding: FragmentCourseDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_course_detail, container, false)
@@ -33,39 +41,55 @@ class CourseDetailFragment : Fragment() {
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
-        val adapter = WeekAdapter(WeekListener { weekId ->
-            viewModel.navigateToWeekDetail(weekId)
-        })
+        val adapter = WeekAdapter(
+            WeekListener { weekId ->
+                viewModel.navigateToWeekDetail(weekId)
+            }
+        )
         binding.weekList.adapter = adapter
 
-        viewModel.courseAndWeeks.observe(viewLifecycleOwner, {
-            it?.let {
-                adapter.submitList(it.weeks)
+        viewModel.courseAndWeeks.observe(
+            viewLifecycleOwner,
+            {
+                it?.let {
+                    adapter.submitList(it.weeks)
+                }
             }
-        })
+        )
 
-        viewModel.navigateToWeekDetail.observe(viewLifecycleOwner, Observer { weekId ->
-            weekId?.let {
-                findNavController().navigate(CourseDetailFragmentDirections.actionCourseDetailFragmentToWeekDetailFragment(weekId))
-                viewModel.doneNavigatingToWeekDetail()
+        viewModel.navigateToWeekDetail.observe(
+            viewLifecycleOwner,
+            { weekId ->
+                weekId?.let {
+                    findNavController().navigate(CourseDetailFragmentDirections.actionCourseDetailFragmentToWeekDetailFragment(weekId))
+                    viewModel.doneNavigatingToWeekDetail()
+                }
             }
-        })
+        )
 
-        viewModel.navigateToCourseList.observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                findNavController().navigate(CourseDetailFragmentDirections.actionCourseDetailFragmentToCourseListFragment())
-                viewModel.doneNavigatingToCourseList()
+        viewModel.navigateToCourseList.observe(
+            viewLifecycleOwner,
+            {
+                if (it == true) {
+                    findNavController().navigate(CourseDetailFragmentDirections.actionCourseDetailFragmentToCourseListFragment())
+                    viewModel.doneNavigatingToCourseList()
+                }
             }
-        })
+        )
 
-        viewModel.showWeekCreatedSnackbar.observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                Snackbar.make(requireActivity().findViewById(android.R.id.content),
-                              getString(R.string.new_week_message),
-                              Snackbar.LENGTH_SHORT).show()
-                viewModel.doneShowingWeekCreatedSnackbar()
+        viewModel.showWeekCreatedSnackbar.observe(
+            viewLifecycleOwner,
+            {
+                if (it == true) {
+                    Snackbar.make(
+                        requireActivity().findViewById(android.R.id.content),
+                        getString(R.string.new_week_message),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                    viewModel.doneShowingWeekCreatedSnackbar()
+                }
             }
-        })
+        )
 
         val manager = LinearLayoutManager(activity)
         binding.weekList.layoutManager = manager

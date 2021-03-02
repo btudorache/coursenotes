@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [Course::class, Week::class], version = 1, exportSchema = false)
-abstract class AppDatabase: RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
     abstract val courseDao: CourseDao
     abstract val weekDao: WeekDao
 
@@ -26,9 +26,11 @@ abstract class AppDatabase: RoomDatabase() {
 
                 // If instance is `null` make a new database instance.
                 if (instance == null) {
-                    instance = Room.databaseBuilder(context.applicationContext,
-                                                    AppDatabase::class.java,
-                                                    "course_database")
+                    instance = Room.databaseBuilder(
+                        context.applicationContext,
+                        AppDatabase::class.java,
+                        "course_database"
+                    )
                         .fallbackToDestructiveMigration()
                         .build()
 

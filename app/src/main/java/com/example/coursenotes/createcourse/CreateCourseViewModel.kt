@@ -11,7 +11,7 @@ import com.example.coursenotes.database.WeekDao
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-class CreateCourseViewModel(courseDataSource: CourseDao, weekDataSource: WeekDao): ViewModel() {
+class CreateCourseViewModel(courseDataSource: CourseDao, weekDataSource: WeekDao) : ViewModel() {
     private val courseDatabase = courseDataSource
     private val weekDatabase = weekDataSource
 
@@ -23,31 +23,25 @@ class CreateCourseViewModel(courseDataSource: CourseDao, weekDataSource: WeekDao
     val showCreationWarning: LiveData<Boolean>
         get() = _showCreationWarning
 
-    private suspend fun insertCourse(course: Course): Long {
-        return courseDatabase.insert(course)
-    }
-
-    private suspend fun insertWeeks(weekList: List<Week>) {
-        weekDatabase.insertAll(weekList)
-    }
-
     fun onCreateCourse(courseName: String, duration: String) {
         if (courseName == "" || duration == "") {
             _showCreationWarning.value = true
         } else {
             viewModelScope.launch {
-                val course = Course(courseName = courseName,
-                                    duration = Integer.parseInt(duration),
-                                    color = Random.nextInt(5))
+                val course = Course(
+                    courseName = courseName,
+                    duration = Integer.parseInt(duration),
+                    color = Random.nextInt(5)
+                )
 
-                val newCourseId = insertCourse(course)
+                val newCourseId = courseDatabase.insert(course)
 
                 val weekList = mutableListOf<Week>()
                 for (i in 1..course.duration) {
                     weekList.add(Week(courseCreatorId = newCourseId, name = "Week $i"))
                 }
 
-                insertWeeks(weekList)
+                weekDatabase.insertAll(weekList)
 
                 // set state to navigate back to course list
                 _navigateToCourseList.value = true

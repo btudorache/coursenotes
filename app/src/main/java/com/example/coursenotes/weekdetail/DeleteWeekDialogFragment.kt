@@ -6,8 +6,7 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.example.coursenotes.R
 
-
-class DeleteWeekDialogFragment(private val viewModel: WeekDetailViewModel): DialogFragment() {
+class DeleteWeekDialogFragment(private val viewModel: WeekDetailViewModel) : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
