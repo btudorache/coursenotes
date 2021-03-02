@@ -91,5 +91,4 @@ class CourseDetailFragment : Fragment() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 }

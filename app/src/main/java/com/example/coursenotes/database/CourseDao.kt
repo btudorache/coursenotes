@@ -20,6 +20,9 @@ interface CourseDao {
     @Query("SELECT * FROM course_table ORDER BY id DESC")
     fun getAllCourses(): LiveData<List<Course>>
 
+    @Query("SELECT * FROM course_table WHERE id = :key")
+    suspend fun getCourseWithId(key: Long): Course
+
     @Transaction
     @Query("SELECT * FROM course_table WHERE id = :key")
     fun getCourseAndWeeksWithId(key: Long): LiveData<CourseWithWeeks>

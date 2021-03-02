@@ -17,7 +17,8 @@
             app:exitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_courseListFragment_to_courseDetailFragment"
-            app:destination="@id/courseDetailFragment" />
+            app:destination="@id/courseDetailFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/createCourseFragment"
@@ -51,5 +52,8 @@
         <argument
             android:name="weekId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_weekDetailFragment_to_courseDetailFragment"
+            app:destination="@id/courseDetailFragment" />
     </fragment>
 </navigation>

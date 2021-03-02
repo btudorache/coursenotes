@@ -4,16 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
-        android:id="@+id/delete_course"
+        android:id="@+id/delete_week"
         android:orderInCategory="100"
         android:title="@string/delete_button_string"
         android:icon="@drawable/ic_baseline_delete_48"
         app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/create_week"
-        android:orderInCategory="100"
-        android:title="@string/create_course_button_string"
-        android:icon="@drawable/ic_baseline_create_48"
-        app:showAsAction="ifRoom" />
 </menu>

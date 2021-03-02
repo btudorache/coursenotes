@@ -11,6 +11,9 @@ interface WeekDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(weekList: List<Week>)
 
+    @Delete
+    suspend fun delete(week: Week)
+
     @Update
     suspend fun update(week: Week)
 
