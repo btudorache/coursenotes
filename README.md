@@ -16,6 +16,6 @@ or use "Import Project" in Android Studio.
 
 ## Screenshots
 
-![courseList](https://github.com/btudorache/coursenotes/blob/master/readme_screenshots/course_list.png)
-![courseDetail](https://github.com/btudorache/coursenotes/blob/master/readme_screenshots/course_detail.png)
-![weekDetail](https://github.com/btudorache/coursenotes/blob/master/readme_screenshots/week_detail.png)
+![courseList](https://github.com/btudorache/coursenotes/blob/master/screenshots/course_list.png)
+![courseDetail](https://github.com/btudorache/coursenotes/blob/master/screenshots/course_detail.png)
+![weekDetail](https://github.com/btudorache/coursenotes/blob/master/screenshots/week_detail.png)
