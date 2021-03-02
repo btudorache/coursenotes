@@ -21,11 +21,7 @@ class CourseListFragment : Fragment() {
 
     private lateinit var courseListViewModel: CourseListViewModel
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-
-        setHasOptionsMenu(true)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         // Get reference to the binding object and inflate fragment
         val binding: FragmentCourseListBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_course_list, container, false)
@@ -75,20 +71,5 @@ class CourseListFragment : Fragment() {
         binding.courseList.layoutManager = manager
 
         return binding.root
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_course_list, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.clear_courses -> {
-                courseListViewModel.clearCourses()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }

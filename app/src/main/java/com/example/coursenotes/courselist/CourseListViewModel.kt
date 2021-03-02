@@ -35,10 +35,4 @@ class CourseListViewModel(dataSource: CourseDao): ViewModel() {
     fun doneNavigatingToCourseDetail() {
         _navigateToCourseDetail.value = null
     }
-
-    fun clearCourses() {
-        viewModelScope.launch {
-            database.clear()
-        }
-    }
 }
