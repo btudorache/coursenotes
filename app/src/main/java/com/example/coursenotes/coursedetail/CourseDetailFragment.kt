@@ -81,7 +81,7 @@ class CourseDetailFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.delete_course -> {
-                DeleteCourseDialogFragment(viewModel).show(parentFragmentManager, "delete_dialog")
+                DeleteCourseDialogFragment(viewModel).show(parentFragmentManager, "delete_course_dialog")
                 true
             }
             R.id.create_week -> {

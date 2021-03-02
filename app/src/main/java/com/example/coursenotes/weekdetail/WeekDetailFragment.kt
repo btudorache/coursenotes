@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.coursenotes.R
 import com.example.coursenotes.coursedetail.CourseDetailFragmentArgs
+import com.example.coursenotes.coursedetail.DeleteCourseDialogFragment
 import com.example.coursenotes.database.AppDatabase
 import com.example.coursenotes.databinding.FragmentWeekDetailBinding
 
@@ -57,7 +58,7 @@ class WeekDetailFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.delete_week ->  {
-                viewModel.deleteWeek()
+                DeleteWeekDialogFragment(viewModel).show(parentFragmentManager, "delete_course_dialog")
                 true
             }
             else -> super.onOptionsItemSelected(item)
